@@ -34,5 +34,13 @@ public class Scene : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void Account()
+    {
+        SceneManager.LoadScene(3);
+    }
 
+    public void Search()
+    {
+        SceneManager.LoadScene(4);
+    }
 }

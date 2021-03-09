@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AR.unity
     guid: f35810ec0df66421caa6cde5a86fc6f4
+  - enabled: 1
+    path: Assets/Scenes/Account.unity
+    guid: 07e98fa2ca7994ec39c0936237251915
+  - enabled: 1
+    path: Assets/Scenes/Search Page.unity
+    guid: 2d0341ea97abf4c138ecbd1a5cf6e3c7
   m_configObjects: {}
