@@ -19,7 +19,7 @@ public class loadingScreenHandler : MonoBehaviour
     {
         if(DateTime.UtcNow - start > minLoadingTime)
         {
-            SceneManager.LoadScene("AR");
+            SceneManager.LoadScene(1);
         }
     }
 }
