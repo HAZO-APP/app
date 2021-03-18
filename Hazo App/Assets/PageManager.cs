@@ -36,6 +36,7 @@ public class PageManager : MonoBehaviour
         header.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1 * 40f / 517.5f * screenSize.y / 2, 0);
 
         m.setScale(Mathf.Min(screenSize.x, screenSize.y));
+        m.setPosition(headerBox.GetComponent<RectTransform>().localScale.y, screenSize);
     }
 
     public Vector2 getScreenSize()

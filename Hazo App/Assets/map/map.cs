@@ -21,12 +21,13 @@ public class map : MonoBehaviour
         
     }
 
-    public void setPosition()
+    public void setPosition(float headerSize, Vector2 screenSize)
     {
-
+        Vector2 pos = this.transform.GetComponent<RectTransform>().anchoredPosition;
+        pos.y = screenSize.y/2 - headerSize - Mathf.Min(screenSize.x, screenSize.y) * 0.7f / 2 - 30;
+        this.transform.GetComponent<RectTransform>().anchoredPosition = pos;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Vector4 temp = Vector4.zero;
@@ -43,6 +44,6 @@ public class map : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, new Vector3(15, 15, 0.1f));
+        Gizmos.DrawCube(transform.position, new Vector3(1, 1, 0.1f));
     }
 }
