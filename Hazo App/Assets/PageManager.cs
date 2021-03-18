@@ -8,15 +8,13 @@ public class PageManager : MonoBehaviour
     public GameObject[] pages = new GameObject[3];
     public float pagePosition = 1;
     private Vector2 screenSize;
-
-
     public GameObject header;
+
+    public map m;
     // Start is called before the first frame update
     void Start()
     {
         Transform headerBox, headerLogo;
-        Vector3 scale;
-
         screenSize = new Vector2();
         screenSize.x = this.GetComponent<RectTransform>().sizeDelta.x;
         screenSize.y = this.GetComponent<RectTransform>().sizeDelta.y;
@@ -36,6 +34,8 @@ public class PageManager : MonoBehaviour
         headerBox.GetComponent<RectTransform>().localScale = new Vector3(screenSize.x, 40f / 517.5f * screenSize.y, 1);
 
         header.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1 * 40f / 517.5f * screenSize.y / 2, 0);
+
+        m.setScale(Mathf.Min(screenSize.x, screenSize.y));
     }
 
     public Vector2 getScreenSize()

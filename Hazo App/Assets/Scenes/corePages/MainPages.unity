@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &54012399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7547599151753218370, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7370925704699226067}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ba9ae70109f804fb0e15e0bf31b457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &150264967 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 372055331258192814, guid: 51aa65290afb4dd478f5a75e7ff322b8,
@@ -870,6 +882,7 @@ MonoBehaviour:
   - {fileID: 184074391}
   pagePosition: 1
   header: {fileID: 392288421}
+  m: {fileID: 54012399}
 --- !u!114 &1676415773 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
@@ -1184,25 +1197,35 @@ PrefabInstance:
       propertyPath: _mapShape
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: _localMapDimension.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: _localMapDimension.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.10511295
+      value: 0.10512999
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.052556474
+      value: 0.052564994
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7370925704803542852, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
