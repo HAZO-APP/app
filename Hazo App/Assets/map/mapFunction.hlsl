@@ -1,9 +1,15 @@
 
-void clip_float(float3 planePosition, float3 pos, out float1 alpha)
+void border_float(float3 pos, float4 area, out float alpha)
 {
-    if (pos.x < 0 || pos.z < 0 || pos.x > planePosition.x || pos.z > planePosition.z)
+    if (pos.x <= area.x || pos.x >= area.w)
     {
         alpha = 0;
+        return;
+    }
+    if (pos.y <= area.y || pos.y >= area.z)
+    {
+        alpha = 0;
+        return;
     }
     alpha = 1;
 }
