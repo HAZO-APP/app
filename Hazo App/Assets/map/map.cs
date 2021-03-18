@@ -16,9 +16,14 @@ public class map : MonoBehaviour
 
     public void setScale(float screenSize)
     {
-        float scaleFactor = screenSize * 0.7f / 2;
+        float scaleFactor = screenSize * 0.7f;
         this.transform.localScale = new Vector3(scaleFactor, 1, scaleFactor);
         
+    }
+
+    public void setPosition()
+    {
+
     }
 
     // Update is called once per frame
