@@ -22,7 +22,6 @@ public class menuScript : MonoBehaviour
         Vector3 pos = this.GetComponent<RectTransform>().anchoredPosition;
 
         pageManager = pageManagerGameObject.GetComponent<PageManager>();
-        setButtonPos(pageManager.GetComponent<RectTransform>().sizeDelta.x) ;
 
         scaleFactor *= (float) pageManager.GetComponent<RectTransform>().sizeDelta.y;
 
@@ -31,9 +30,8 @@ public class menuScript : MonoBehaviour
 
         scaleFactor /= 20f;
 
-        Debug.Log(scaleFactor);
-        
         this.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        setButtonPos(pageManager.GetComponent<RectTransform>().sizeDelta.x, scaleFactor);
     }
 
 
@@ -119,7 +117,7 @@ public class menuScript : MonoBehaviour
         return tmp;
     }
 
-    private void setButtonPos(float size)
+    private void setButtonPos(float size, float scaleFactor)
     {
         Vector3 temp;
         int start = -1;
@@ -127,7 +125,8 @@ public class menuScript : MonoBehaviour
         for (int i1 = 0; i1 < buttons.Length; i1++)
         {
             temp = buttons[i1].GetComponent<RectTransform>().anchoredPosition;
-            temp.x = (start + i1) * size/4;
+            temp.x = (start + i1) * size/3;
+            temp.x /= scaleFactor;
             buttons[i1].GetComponent<RectTransform>().anchoredPosition = temp;
         }
 

@@ -1167,15 +1167,30 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: _mapShape
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.1050358
+      value: 0.105
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.0525179
+      value: 0.0525
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7370925704803542852, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
