@@ -1,5 +1,8 @@
-﻿using Microsoft.Maps.Unity;
+﻿using Microsoft.Geospatial;
+using Microsoft.Maps.Unity;
+using System;
 using UnityEngine;
+using UnityEngine.Android;
 /*
 using UnityEditor;
 
@@ -28,12 +31,27 @@ public class MapPage : MonoBehaviour
 
     public bool fullScreenMode = false;
     public bool test = false;
-    
+
+    private DateTime start;
+    private TimeSpan minTapTime = TimeSpan.FromMilliseconds(100);
+
     // Start is called before the first frame update
     void Start()
     {
         render = map.GetComponent<MapRenderer>();
         m = render.TerrainMaterial;
+
+        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+        }
+        if (!Permission.HasUserAuthorizedPermission(Permission.CoarseLocation))
+        {
+            Permission.RequestUserPermission(Permission.CoarseLocation);
+        }
+        Input.location.Start();
+
+
     }
 
     public void setPage(Vector2 screenSize)
@@ -84,28 +102,47 @@ public class MapPage : MonoBehaviour
 
         render.TerrainMaterial = m;
 
+        //set current location on map
+        LatLon coord = map.GetComponent<MapRendererBase>().Center;
+        coord = new LatLon(Input.location.lastData.latitude, Input.location.lastData.longitude);
+        map.GetComponent<MapRendererBase>().Center = coord;
+
         if (Input.touchCount == 1)
         {
-            if (!fullScreenMode)
+            Touch touch = Input.GetTouch(0);
+            Vector2 pos = touch.position;
+
+            Vector2 deltaPos;
+
+            pos.x -= pageManager.getScreenSize().x / 2;
+            pos.y -= pageManager.getScreenSize().y / 2;
+
+            pos *= pageManager.GetComponent<RectTransform>().localScale.x;
+
+            if (touch.phase == TouchPhase.Began)
             {
-                Touch touch = Input.GetTouch(0);
-                Vector2 pos = touch.position;
-                pos.x -= pageManager.getScreenSize().x / 2;
-                pos.y -= pageManager.getScreenSize().y / 2;
-
-                pos *= pageManager.GetComponent<RectTransform>().localScale.x;
-
-                if (mapBorder.x <= pos.x && pos.x <= mapBorder.w)
+                start = DateTime.UtcNow;
+            }
+            if (mapBorder.x <= pos.x && pos.x <= mapBorder.w)
+            {
+                if (mapBorder.y <= pos.y && pos.y <= mapBorder.z)
                 {
-                    if (mapBorder.y <= pos.y && pos.y <= mapBorder.z)
+                    if (!fullScreenMode && touch.phase == TouchPhase.Ended && DateTime.UtcNow - start < minTapTime)
                     {
                         toggleSubPage();
                     }
+                    
+                    if(DateTime.UtcNow - start > minTapTime)
+                    {
+                        /*
+                        deltaPos = touch.deltaPosition;
+                        LatLon coord = map.GetComponent<MapRendererBase>().Center;
+                        coord = new LatLon(coord.LatitudeInDegrees + (double)deltaPos.x / 100, coord.LongitudeInDegrees + (double)deltaPos.y / 100);
+                        map.GetComponent<MapRendererBase>().Center = coord;
+                        */
+                    }
                 }
             }
-            
-
-            
             
         }
 
