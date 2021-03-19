@@ -10,7 +10,8 @@ public class PageManager : MonoBehaviour
     private Vector2 screenSize;
     public GameObject header;
 
-    public map m;
+    public MapPage mapPage;
+    public bool subPageActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,14 +35,13 @@ public class PageManager : MonoBehaviour
         headerBox.GetComponent<RectTransform>().localScale = new Vector3(screenSize.x, 40f / 517.5f * screenSize.y, 1);
 
         header.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1 * 40f / 517.5f * screenSize.y / 2, 0);
-
-        m.setScale(Mathf.Min(screenSize.x, screenSize.y));
-        m.setPosition(headerBox.GetComponent<RectTransform>().localScale.y, screenSize);
+        mapPage.pageManager = this;
+        mapPage.setPage(screenSize);
     }
 
     public Vector2 getScreenSize()
     {
-        return new Vector2(screenSize.x,screenSize.x);
+        return new Vector2(screenSize.x, screenSize.y);
     }
 
     public float getClosestPage()

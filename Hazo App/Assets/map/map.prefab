@@ -191,4 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ba9ae70109f804fb0e15e0bf31b457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: {fileID: 3988930765355220998}
+  map: {fileID: 0}
+  subPage: {fileID: 0}
+  pageManager: {fileID: 0}
+  FullScreenMode: 0
+  test: 0
