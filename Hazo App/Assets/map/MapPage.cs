@@ -2,7 +2,6 @@
 using Microsoft.Maps.Unity;
 using System;
 using UnityEngine;
-using UnityEngine.Android;
 /*
 using UnityEditor;
 
@@ -41,15 +40,10 @@ public class MapPage : MonoBehaviour
         render = map.GetComponent<MapRenderer>();
         m = render.TerrainMaterial;
 
-        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
-        {
-            Permission.RequestUserPermission(Permission.FineLocation);
-        }
-        if (!Permission.HasUserAuthorizedPermission(Permission.CoarseLocation))
-        {
-            Permission.RequestUserPermission(Permission.CoarseLocation);
-        }
-        Input.location.Start();
+        //sets current postion of the map
+        LatLon coord = map.GetComponent<MapRendererBase>().Center;
+        coord = new LatLon(Input.location.lastData.latitude, Input.location.lastData.longitude);
+        map.GetComponent<MapRendererBase>().Center = coord;
 
 
     }
@@ -98,6 +92,7 @@ public class MapPage : MonoBehaviour
             mapBorder.w = map.transform.position.x + 0.5f * render.MapDimension.x;
             mapBorder.z = map.transform.position.y + 0.5f * render.MapDimension.y;
         }
+
         m.SetVector("border", mapBorder);
 
         render.TerrainMaterial = m;
