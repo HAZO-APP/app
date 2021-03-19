@@ -85,31 +85,13 @@ public class menuScript : MonoBehaviour
             button.GetComponent<SpriteRenderer>().material = m;
         }
     }
-
-    public void changeToMap()
+    public void changePage(int pageId)
     {
-        
-        if (pageManager.getClosestPage() != 2)
+        if (pageManager.getClosestPage() != pageId)
         {
-            pageManager.pageGoal = 2;
+            pageManager.pageGoal = pageId;
         }
     }
-    public void changeToAR()
-    {
-        if (pageManager.getClosestPage() != 1)
-        {
-            pageManager.pageGoal = 1;
-        }
-    }
-    public void changeToProfile()
-    {
-        
-        if (pageManager.getClosestPage() != 0)
-        {
-            pageManager.pageGoal = 0;
-        }
-    }
-
     private float stateJump(int direction, float start)
     {
         float tmp = direction * 1 * Time.deltaTime + start;

@@ -77,6 +77,14 @@ public class PageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //checks swipes
+
+        if(Input.touchCount == 1)
+        {
+
+        }
+
+        //updates pages
         float direction = 0f;
         float jump = 0.5f * Time.deltaTime;
         float tempGoal = (float)pageGoal;
