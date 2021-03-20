@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - MapPage
+    - Page
     - PageManager
     - loadingScreenHandler
     - menuScript
@@ -107,8 +108,6 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11902}
-    - Class: 114
       Script: {instanceID: 11904}
     - Class: 114
       Script: {instanceID: 11906}
@@ -123,71 +122,71 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11916}
     - Class: 114
-      Script: {instanceID: 12084}
+      Script: {instanceID: 11918}
     - Class: 114
-      Script: {instanceID: 12198}
+      Script: {instanceID: 12086}
     - Class: 114
-      Script: {instanceID: 12222}
+      Script: {instanceID: 12200}
     - Class: 114
-      Script: {instanceID: 12400}
+      Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 12444}
+      Script: {instanceID: 12402}
     - Class: 114
-      Script: {instanceID: 12630}
+      Script: {instanceID: 12446}
+    - Class: 114
+      Script: {instanceID: 12632}
     - Class: 114
       Script: {instanceID: 12984}
     - Class: 114
       Script: {instanceID: 13036}
     - Class: 114
-      Script: {instanceID: 13100}
+      Script: {instanceID: 13102}
     - Class: 114
-      Script: {instanceID: 13350}
+      Script: {instanceID: 13352}
     - Class: 114
-      Script: {instanceID: 13582}
+      Script: {instanceID: 13584}
     - Class: 114
-      Script: {instanceID: 13624}
+      Script: {instanceID: 13626}
     - Class: 114
-      Script: {instanceID: 13688}
+      Script: {instanceID: 13690}
     - Class: 114
-      Script: {instanceID: 13806}
+      Script: {instanceID: 13808}
     - Class: 114
-      Script: {instanceID: 14146}
+      Script: {instanceID: 14148}
     - Class: 114
-      Script: {instanceID: 14468}
+      Script: {instanceID: 14470}
     - Class: 114
-      Script: {instanceID: 14474}
+      Script: {instanceID: 14476}
     - Class: 114
-      Script: {instanceID: 14538}
+      Script: {instanceID: 14540}
     - Class: 114
-      Script: {instanceID: 14558}
+      Script: {instanceID: 14560}
     - Class: 114
-      Script: {instanceID: 14700}
+      Script: {instanceID: 14702}
     - Class: 114
-      Script: {instanceID: 14738}
+      Script: {instanceID: 14740}
     - Class: 114
-      Script: {instanceID: 14746}
+      Script: {instanceID: 14748}
     - Class: 114
-      Script: {instanceID: 15068}
+      Script: {instanceID: 15070}
     - Class: 114
-      Script: {instanceID: 15136}
+      Script: {instanceID: 15138}
     - Class: 114
-      Script: {instanceID: 15408}
+      Script: {instanceID: 15410}
     - Class: 114
-      Script: {instanceID: 15604}
+      Script: {instanceID: 15606}
     - Class: 114
-      Script: {instanceID: 15654}
-    - Class: 114
-      Script: {instanceID: 15854}
+      Script: {instanceID: 15656}
     - Class: 114
       Script: {instanceID: 15856}
     - Class: 114
-      Script: {instanceID: 15914}
+      Script: {instanceID: 15858}
     - Class: 114
-      Script: {instanceID: 16046}
+      Script: {instanceID: 15916}
     - Class: 114
-      Script: {instanceID: 16054}
+      Script: {instanceID: 16048}
     - Class: 114
-      Script: {instanceID: 19556}
+      Script: {instanceID: 16056}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -228,41 +227,43 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11904}
+      Script: {instanceID: 11906}
     - Class: 114
-      Script: {instanceID: 11910}
+      Script: {instanceID: 11912}
     - Class: 114
-      Script: {instanceID: 11916}
+      Script: {instanceID: 11918}
     - Class: 114
-      Script: {instanceID: 12298}
+      Script: {instanceID: 12300}
     - Class: 114
-      Script: {instanceID: 12400}
-    - Class: 114
-      Script: {instanceID: 12860}
+      Script: {instanceID: 12402}
     - Class: 114
       Script: {instanceID: 12862}
     - Class: 114
       Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 12878}
+      Script: {instanceID: 12866}
+    - Class: 114
+      Script: {instanceID: 12880}
     - Class: 114
       Script: {instanceID: 12908}
     - Class: 114
       Script: {instanceID: 12984}
     - Class: 114
-      Script: {instanceID: 13230}
+      Script: {instanceID: 13042}
     - Class: 114
-      Script: {instanceID: 13938}
+      Script: {instanceID: 13232}
     - Class: 114
-      Script: {instanceID: 14162}
+      Script: {instanceID: 13940}
     - Class: 114
-      Script: {instanceID: 15614}
+      Script: {instanceID: 14164}
     - Class: 114
-      Script: {instanceID: 15888}
+      Script: {instanceID: 15616}
     - Class: 114
-      Script: {instanceID: 15900}
+      Script: {instanceID: 15890}
     - Class: 114
-      Script: {instanceID: 15916}
+      Script: {instanceID: 15902}
+    - Class: 114
+      Script: {instanceID: 15918}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -410,7 +411,7 @@ ScriptsOnlyBuild:
     className: Renderer2DData
   - hash:
       serializedVersion: 2
-      Hash: 5b3a63c894c4e9194eb12b093be3f178
+      Hash: c6ffc74f9c20b79adcd79cbe12d8530e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: menuScript
@@ -578,12 +579,6 @@ ScriptsOnlyBuild:
     className: MapSession
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MoveCamera
-  - hash:
-      serializedVersion: 2
       Hash: df142a20450c62b5f2878debc99498a0
     assemblyName: Microsoft.Maps.Unity.SupportingScripts.dll
     namespaceName: Microsoft.Maps.Unity
@@ -612,6 +607,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: 164221013889a03b3422d30debb35460
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Page
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -746,7 +747,7 @@ ScriptsOnlyBuild:
     className: MapContourLineLayer
   - hash:
       serializedVersion: 2
-      Hash: aa87b90db840be98b8c0b13aa957ea69
+      Hash: 9b9ec7dfc88568bf525dcab58ead4080
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapPage
@@ -1040,7 +1041,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerEnumHistory
   - hash:
       serializedVersion: 2
-      Hash: 2132dcae4d343312d6a1d2089f11344f
+      Hash: f18dba86152ab4077beb1bbce11a551a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PageManager

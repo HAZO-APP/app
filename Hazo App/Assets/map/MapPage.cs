@@ -2,9 +2,9 @@
 using Microsoft.Maps.Unity;
 using System;
 using UnityEngine;
-/*
-using UnityEditor;
 
+using UnityEditor;
+/*
 [CustomEditor(typeof(MapPage))]
 public class MapPageEditor : Editor
 {
@@ -24,12 +24,12 @@ public class MapPage : MonoBehaviour
     public GameObject map;
     public GameObject subPage;
     public PageManager pageManager;
+    public Page page;
 
     private MapRenderer render;
     private Material m;
 
     public bool fullScreenMode = false;
-    public bool test = false;
 
     private DateTime start;
     private TimeSpan minTapTime = TimeSpan.FromMilliseconds(100);
@@ -105,29 +105,46 @@ public class MapPage : MonoBehaviour
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-            Vector2 pos = touch.position;
+            Vector2 pos1 = touch.position;
+            Vector2 pos2 = touch.rawPosition;
 
             Vector2 deltaPos;
 
-            pos.x -= pageManager.getScreenSize().x / 2;
-            pos.y -= pageManager.getScreenSize().y / 2;
+            pos1.x -= pageManager.getScreenSize().x / 2;
+            pos1.y -= pageManager.getScreenSize().y / 2;
 
-            pos *= pageManager.GetComponent<RectTransform>().localScale.x;
+            pos2.x -= pageManager.getScreenSize().x / 2;
+            pos2.y -= pageManager.getScreenSize().y / 2;
+
+            pos1 *= pageManager.GetComponent<RectTransform>().localScale.x;
+            pos2 *= pageManager.GetComponent<RectTransform>().localScale.x;
 
             if (touch.phase == TouchPhase.Began)
             {
                 start = DateTime.UtcNow;
             }
-            if (mapBorder.x <= pos.x && pos.x <= mapBorder.w)
+            if (mapBorder.x <= pos1.x && pos1.x <= mapBorder.w)
             {
-                if (mapBorder.y <= pos.y && pos.y <= mapBorder.z)
+                if (mapBorder.y <= pos1.y && pos1.y <= mapBorder.z)
                 {
                     if (!fullScreenMode && touch.phase == TouchPhase.Ended && DateTime.UtcNow - start < minTapTime)
                     {
                         toggleSubPage();
                     }
-                    
-                    if(DateTime.UtcNow - start > minTapTime)
+                }
+            }
+            else
+            {
+                page.active = false;
+
+            }
+
+            if (mapBorder.x <= pos2.x && pos2.x <= mapBorder.w)
+            {
+                if (mapBorder.y <= pos2.y && pos2.y <= mapBorder.z)
+                {
+                    page.active = true;
+                    if (DateTime.UtcNow - start > minTapTime)
                     {
                         /*
                         deltaPos = touch.deltaPosition;
@@ -138,7 +155,10 @@ public class MapPage : MonoBehaviour
                     }
                 }
             }
-            
+            else
+            {
+                page.active = false;
+            }
         }
 
         subPage.SetActive(fullScreenMode);
@@ -155,17 +175,20 @@ public class MapPage : MonoBehaviour
             Vector2 pos = map.transform.GetComponent<RectTransform>().anchoredPosition;
             pos.y = screenSize.y / 2 - 40f / 517.5f * screenSize.y - Mathf.Min(screenSize.x, screenSize.y) * 0.7f / 2 - screenSize.y / 20;
             map.transform.GetComponent<RectTransform>().anchoredPosition = pos;
+            page.active = false;
         }
         else
         {
             scaleFactor = Mathf.Max(screenSize.x, screenSize.y);
             map.transform.localScale = new Vector3(scaleFactor, 1, scaleFactor);
             map.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+            page.active = true;
         }
 
         subPage.SetActive(!subPage.activeSelf);
         fullScreenMode = !fullScreenMode;
         pageManager.subPageActive = !pageManager.subPageActive;
+
     }
 
     void OnDrawGizmos()

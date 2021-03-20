@@ -9,6 +9,7 @@ public class menuScript : MonoBehaviour
     private PageManager pageManager;
     public GameObject pageManagerGameObject;
     public GameObject[] buttons = new GameObject[3];
+    public bool buttonPress = false;
 
     private static string STATE="Vector1_D5066601";
     private Material m;
@@ -45,6 +46,7 @@ public class menuScript : MonoBehaviour
     {
         GameObject button;
         float buttonState;
+        float state = pageManager.pagePosition % 1;
         Vector3 pos;
         for (int i1 = 0; i1 < buttons.Length; i1 += 1)
         {
@@ -59,7 +61,7 @@ public class menuScript : MonoBehaviour
                 if(buttonState > 0)
                 {
                     buttonState = stateJump(-1, buttonState);
-                    if(buttonState < 0)
+                    if (buttonState < 0)
                     {
                         buttonState = 0;
                     }
@@ -89,6 +91,7 @@ public class menuScript : MonoBehaviour
     {
         if (pageManager.getClosestPage() != pageId)
         {
+            pageManager.buttonPressed = true;
             pageManager.pageGoal = pageId;
         }
     }
