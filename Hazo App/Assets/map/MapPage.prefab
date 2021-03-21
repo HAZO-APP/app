@@ -153,9 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 6940412907366318221}
   subPage: {fileID: 2635419356059021943}
+  pinPrefab: {fileID: 5574246405696385944, guid: 761a66c86c81f1246a939b25288ce09c,
+    type: 3}
   pageManager: {fileID: 0}
+  page: {fileID: 0}
   fullScreenMode: 0
-  test: 0
 --- !u!114 &5475945783100245437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b056140025fe747b6d2887bab0d34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
 --- !u!1001 &6272049327254470785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,12 +336,12 @@ PrefabInstance:
     - target: {fileID: 3988930765355221005, guid: 9834ffcc3930dcd488cb7c00102468e7,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.105181426
+      value: 0.10500009
       objectReference: {fileID: 0}
     - target: {fileID: 3988930765355221005, guid: 9834ffcc3930dcd488cb7c00102468e7,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.052590713
+      value: 0.052500047
       objectReference: {fileID: 0}
     - target: {fileID: 9049446726191836456, guid: 9834ffcc3930dcd488cb7c00102468e7,
         type: 3}
@@ -375,8 +378,7 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4590503726932904387, guid: 9834ffcc3930dcd488cb7c00102468e7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9834ffcc3930dcd488cb7c00102468e7, type: 3}
 --- !u!1 &6940412907366318221 stripped
 GameObject:

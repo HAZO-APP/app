@@ -60,6 +60,7 @@ public class loadingScreenHandler : MonoBehaviour
             {
                 SceneManager.LoadScene(1);
             }
+            
         }
     }
 }
