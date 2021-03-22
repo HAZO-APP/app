@@ -2,7 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - MapPage
-    - MapPin
+    - MapPinData
     - Page
     - PageManager
     - loadingScreenHandler
@@ -11,6 +11,8 @@ ScriptsOnlyBuild:
     - Microsoft.Maps.Unity.MapCopyrightLayer
     - Microsoft.Maps.Unity.MapDataCache
     - Microsoft.Maps.Unity.MapInteractionController
+    - Microsoft.Maps.Unity.MapPin
+    - Microsoft.Maps.Unity.MapPinLayer
     - Microsoft.Maps.Unity.MapRenderer
     - Microsoft.Maps.Unity.MapTouchInteractionHandler
     Microsoft.Maps.Unity.dll:
@@ -254,11 +256,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13232}
     - Class: 114
+      Script: {instanceID: 13544}
+    - Class: 114
       Script: {instanceID: 13910}
     - Class: 114
       Script: {instanceID: 13942}
     - Class: 114
       Script: {instanceID: 14166}
+    - Class: 114
+      Script: {instanceID: 14296}
     - Class: 114
       Script: {instanceID: 15618}
     - Class: 114
@@ -754,10 +760,10 @@ ScriptsOnlyBuild:
     className: MapContourLineLayer
   - hash:
       serializedVersion: 2
-      Hash: ed13a9c97e100fae6c5da40126111cd8
+      Hash: b1940776b3c38179d4a83afc447c69e4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: MapPin
+    className: MapPinData
   - hash:
       serializedVersion: 2
       Hash: 40054b6ff0e5b86a881ca25b123090a6

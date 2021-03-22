@@ -39,16 +39,21 @@ public class MapPage : MonoBehaviour
 
     private List<GameObject> pins = new List<GameObject>();
     private const int pinLayer = 2;
+
     
+
+    AnimationCurve miniAnimationCurve;
+    AnimationCurve FullScreenAnimationCurve;
+
     public void setPage(Vector2 screenSize)
     {
         render = map.GetComponent<MapRenderer>();
 
         m = render.TerrainMaterial;
         //sets current postion of the map
-        LatLonAlt center = new LatLonAlt(Input.location.lastData.latitude, Input.location.lastData.longitude, 0);
+        LatLon center = new LatLon(Input.location.lastData.latitude, Input.location.lastData.longitude);
         //Input.location.Stop();
-        map.GetComponent<MapRendererBase>().Center = center.LatLon;
+        map.GetComponent<MapRendererBase>().Center = center;
 
         //sets up map
         setMapSize(Mathf.Min(screenSize.x, screenSize.y));
@@ -60,7 +65,17 @@ public class MapPage : MonoBehaviour
         subPage.transform.GetChild(0).transform.localScale = new Vector3(scaleFactor * 1.5f, scaleFactor * 1.5f, scaleFactor * 1.5f);
         subPage.transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(scaleFactor * 1.5f * 20 * 0.8f, -1 * (scaleFactor * 1.5f * 20 * 0.8f));
 
-        //addPin(center, "CurrentPos", 0);
+        Keyframe frame0 = new Keyframe(0, 20f / 475.5f * screenSize.y / map.transform.localScale.x * 20 * 40f);
+        Keyframe frame1 = new Keyframe(18, 20f / 475.5f * screenSize.y / map.transform.localScale.x * 20 * 0.5f);
+        Keyframe frame2 = new Keyframe(20, 20f / 475.5f * screenSize.y / map.transform.localScale.x * 20 * 0.25f);
+        miniAnimationCurve = new AnimationCurve(frame0, frame1, frame2);
+
+        frame0 = new Keyframe(0, 20f / 475.5f * screenSize.y / Mathf.Max(screenSize.x, screenSize.y) * 20 * 40);
+        frame2 = new Keyframe(20, 20f / 475.5f * screenSize.y / Mathf.Max(screenSize.x, screenSize.y) * 20 * 0.5f);
+
+        FullScreenAnimationCurve = new AnimationCurve(frame0, frame2);
+
+        addPin(center, "CurrentPos", 0);
     }
 
     private void setMapSize(float screenSize)
@@ -149,6 +164,7 @@ public class MapPage : MonoBehaviour
         }
 
         subPage.SetActive(fullScreenMode);
+        //updatePins();
     }
 
     public void toggleSubPage()
@@ -163,6 +179,8 @@ public class MapPage : MonoBehaviour
             pos.y = screenSize.y / 2 - 40f / 517.5f * screenSize.y - Mathf.Min(screenSize.x, screenSize.y) * 0.7f / 2 - screenSize.y / 20;
             map.transform.GetComponent<RectTransform>().anchoredPosition = pos;
             page.active = false;
+
+            this.GetComponentInChildren<MapPin>().ScaleCurve = miniAnimationCurve;
         }
         else
         {
@@ -170,6 +188,7 @@ public class MapPage : MonoBehaviour
             map.transform.localScale = new Vector3(scaleFactor, 1, scaleFactor);
             map.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
             page.active = true;
+            this.GetComponentInChildren<MapPin>().ScaleCurve = FullScreenAnimationCurve;
         }
 
         subPage.SetActive(!subPage.activeSelf);
@@ -179,49 +198,73 @@ public class MapPage : MonoBehaviour
     }
 
 
-    void addPin(LatLonAlt coord, string id, int symbol)
+    void addPin(LatLon coord, string id, int symbol)
     {
         GameObject tmp = Instantiate(pinPrefab, map.transform);
 
+        MapPinData mapPinData = tmp.GetComponent<MapPinData>();
         MapPin mapPin = tmp.GetComponent<MapPin>();
-        Vector3 pos = render.TransformLatLonAltToLocalPoint(coord);// + map.transform.position;
 
-        pos.z = pos.y;
-        pos.y = pinLayer;
+        float screenSize = pageManager.getScreenSize().y;
+        //Vector3 pos = render.TransformLatLonAltToLocalPoint(coord);// + map.transform.position;
 
-        tmp.transform.localPosition = pos;
+        //pos.z = pos.y;
+        //pos.y = pinLayer;
+
+        //tmp.transform.localPosition = pos;
         tmp.transform.eulerAngles = new Vector3(Mathf.PI / 2, 0, 0);
-        tmp.transform.localScale = new Vector3(Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x) * Mathf.Clamp(map.GetComponent<MapRendererBase>().ZoomLevel / 5, 0.5f, 4);
+        //tmp.transform.localScale = new Vector3(Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x) * Mathf.Clamp(map.GetComponent<MapRendererBase>().ZoomLevel / 5, 0.5f, 4);
 
-        mapPin.id = id;
-        mapPin.coord = coord;
-        mapPin.setSymbol(symbol);
-        pins.Add(tmp);
+        
+        //Debug.Log($"Map Scale:{map.transform.localScale} frame:{1 / map.transform.localScale.x * 20}");
+
+
+        
+
+        mapPin.ScaleCurve = miniAnimationCurve;
+        mapPin.Altitude = 1;
+        mapPinData.id = id;
+        mapPin.Location = coord;
+        mapPinData.setSymbol(symbol);
+        //pins.Add(tmp);
     }
 
-    void removePin(string id)
+    /*void removePin(string id)
     {
         pins.RemoveAt(pins.FindIndex(x => x.GetComponent<MapPin>().id == id));
-    }
+    }*/
 
     void removePin(int index)
     {
         pins.RemoveAt(index);
     }
-
-    void updatePin()
+    /*
+    void updatePins()
     {
+        Debug.Log("Lets GOOOOO!!!!"+ pins.Count);
         GameObject tmp;
+        MapPin mapPin;
         Vector3 pos;
         for(int i1 = 0; i1 < pins.Count; i1++)
         {
+            Debug.Log("Lets FUCK"+i1);
             tmp = pins[i1];
-            pos = render.TransformLatLonAltToLocalPoint(tmp.GetComponent<MapPin>().coord);
-            pos.z = pinLayer;
-            tmp.transform.position = pos;
+            Debug.Log(tmp);
+
+            mapPin = tmp.GetComponent<MapPin>();
+            Debug.Log(mapPin.coord);
+            pos = render.TransformLatLonAltToLocalPoint(mapPin.coord);// + map.transform.position;
+
+            Debug.Log(pos);
+            pos.z = pos.y;
+            pos.y = pinLayer;
+
+            tmp.transform.localPosition = pos;
+            tmp.transform.eulerAngles = new Vector3(Mathf.PI / 2, 0, 0);
+            tmp.transform.localScale = new Vector3(Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x, Vector3.one.x / map.transform.localScale.x) * Mathf.Clamp(map.GetComponent<MapRendererBase>().ZoomLevel / 5, 0.5f, 4);
         }
     }
-
+    */
     void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);

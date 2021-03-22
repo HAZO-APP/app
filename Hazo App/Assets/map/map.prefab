@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3988930765355221003}
   - component: {fileID: 3988930765355221002}
   - component: {fileID: 3988930765355221005}
+  - component: {fileID: 3556945591845412437}
+  - component: {fileID: 1831815279520915914}
   m_Layer: 0
   m_Name: map
   m_TagString: Untagged
@@ -178,3 +180,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.105, z: 2}
   m_Center: {x: 0, y: 0.0525, z: 0}
+--- !u!114 &3556945591845412437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988930765355221004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b303ffbed90191b4dbbf76b03bf83d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 3.5
+  _panSpeed: 0.5
+  _onTapAndHold:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDoubleTap:
+    m_PersistentCalls:
+      m_Calls: []
+  _onInteractionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onInteractionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1831815279520915914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988930765355221004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b1021f9cb8215439219e0216e34c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
