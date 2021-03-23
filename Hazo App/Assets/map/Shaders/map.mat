@@ -85,7 +85,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - border: {r: -5.90625, g: -0.63134193, b: 11.181161, a: 5.90625}
+    - border: {r: 27.84375, g: -0.63134193, b: 11.181161, a: 39.65625}
   m_BuildTextureStacks: []
 --- !u!114 &2878264584533912797
 MonoBehaviour:

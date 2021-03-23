@@ -1189,6 +1189,12 @@ PrefabInstance:
       propertyPath: pageManagerGameObject
       value: 
       objectReference: {fileID: 1482439192}
+    - target: {fileID: 3356727580621964460, guid: 51aa65290afb4dd478f5a75e7ff322b8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3286163911610860551, guid: a3926f2f1b2124b1484b27206ce6384f,
+        type: 3}
     - target: {fileID: 8437349357493766477, guid: 51aa65290afb4dd478f5a75e7ff322b8,
         type: 3}
       propertyPath: m_CullTransparentMesh
@@ -1297,12 +1303,12 @@ PrefabInstance:
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.105
+      value: 0.1060462
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.0525
+      value: 0.0530231
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
