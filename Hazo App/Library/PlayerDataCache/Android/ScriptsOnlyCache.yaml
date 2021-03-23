@@ -2,7 +2,6 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - MapPage
-    - MapPinData
     - Page
     - PageManager
     - loadingScreenHandler
@@ -133,63 +132,63 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 12402}
+      Script: {instanceID: 12408}
     - Class: 114
-      Script: {instanceID: 12446}
+      Script: {instanceID: 12452}
     - Class: 114
-      Script: {instanceID: 12632}
+      Script: {instanceID: 12638}
     - Class: 114
-      Script: {instanceID: 12984}
+      Script: {instanceID: 12990}
     - Class: 114
-      Script: {instanceID: 13036}
+      Script: {instanceID: 13042}
     - Class: 114
-      Script: {instanceID: 13102}
+      Script: {instanceID: 13108}
     - Class: 114
-      Script: {instanceID: 13352}
+      Script: {instanceID: 13358}
     - Class: 114
-      Script: {instanceID: 13584}
+      Script: {instanceID: 13590}
     - Class: 114
-      Script: {instanceID: 13626}
+      Script: {instanceID: 13632}
     - Class: 114
-      Script: {instanceID: 13690}
+      Script: {instanceID: 13696}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13814}
     - Class: 114
-      Script: {instanceID: 14150}
-    - Class: 114
-      Script: {instanceID: 14472}
+      Script: {instanceID: 14156}
     - Class: 114
       Script: {instanceID: 14478}
     - Class: 114
-      Script: {instanceID: 14542}
+      Script: {instanceID: 14484}
     - Class: 114
-      Script: {instanceID: 14562}
+      Script: {instanceID: 14548}
     - Class: 114
-      Script: {instanceID: 14704}
+      Script: {instanceID: 14568}
     - Class: 114
-      Script: {instanceID: 14742}
+      Script: {instanceID: 14710}
     - Class: 114
-      Script: {instanceID: 14750}
+      Script: {instanceID: 14748}
     - Class: 114
-      Script: {instanceID: 15072}
+      Script: {instanceID: 14756}
     - Class: 114
-      Script: {instanceID: 15140}
+      Script: {instanceID: 15078}
     - Class: 114
-      Script: {instanceID: 15412}
+      Script: {instanceID: 15146}
     - Class: 114
-      Script: {instanceID: 15608}
+      Script: {instanceID: 15418}
     - Class: 114
-      Script: {instanceID: 15658}
+      Script: {instanceID: 15614}
     - Class: 114
-      Script: {instanceID: 15858}
+      Script: {instanceID: 15664}
     - Class: 114
-      Script: {instanceID: 15860}
+      Script: {instanceID: 15864}
     - Class: 114
-      Script: {instanceID: 15918}
+      Script: {instanceID: 15866}
     - Class: 114
-      Script: {instanceID: 16050}
+      Script: {instanceID: 15924}
     - Class: 114
-      Script: {instanceID: 16058}
+      Script: {instanceID: 16056}
+    - Class: 114
+      Script: {instanceID: 16064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -236,47 +235,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11918}
     - Class: 114
-      Script: {instanceID: 12300}
+      Script: {instanceID: 12306}
     - Class: 114
-      Script: {instanceID: 12402}
+      Script: {instanceID: 12408}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 12864}
+      Script: {instanceID: 12870}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12872}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12886}
     - Class: 114
-      Script: {instanceID: 12908}
+      Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 12984}
+      Script: {instanceID: 12990}
     - Class: 114
-      Script: {instanceID: 13042}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13232}
+      Script: {instanceID: 13238}
     - Class: 114
-      Script: {instanceID: 13544}
+      Script: {instanceID: 13550}
     - Class: 114
-      Script: {instanceID: 13910}
+      Script: {instanceID: 13948}
     - Class: 114
-      Script: {instanceID: 13942}
+      Script: {instanceID: 14172}
     - Class: 114
-      Script: {instanceID: 14166}
+      Script: {instanceID: 14302}
     - Class: 114
-      Script: {instanceID: 14296}
+      Script: {instanceID: 15624}
     - Class: 114
-      Script: {instanceID: 15618}
+      Script: {instanceID: 15768}
     - Class: 114
-      Script: {instanceID: 15762}
+      Script: {instanceID: 15842}
     - Class: 114
-      Script: {instanceID: 15836}
+      Script: {instanceID: 15898}
     - Class: 114
-      Script: {instanceID: 15892}
+      Script: {instanceID: 15910}
     - Class: 114
-      Script: {instanceID: 15904}
-    - Class: 114
-      Script: {instanceID: 15920}
+      Script: {instanceID: 15926}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -404,6 +401,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 523861b352924638d67ac331d2246712
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: spriteIndexer
   - hash:
       serializedVersion: 2
       Hash: 5fcd6c83f4b9ef27fbcf701cc39abb93
@@ -766,7 +769,7 @@ ScriptsOnlyBuild:
     className: MapPinData
   - hash:
       serializedVersion: 2
-      Hash: 40054b6ff0e5b86a881ca25b123090a6
+      Hash: 01161f4d1275930e54afbd69f2521e55
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapPage

@@ -1219,6 +1219,18 @@ PrefabInstance:
       propertyPath: pageManager
       value: 
       objectReference: {fileID: 1482439199}
+    - target: {fileID: 1238308741515866218, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: icons.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e7eb49d723216e4882ad244fa656405,
+        type: 3}
+    - target: {fileID: 1238308741515866218, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
+        type: 3}
+      propertyPath: icons.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 97075cf3963dbce498bbbf87bba70874,
+        type: 3}
     - target: {fileID: 3070571454396853673, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1272,7 +1284,7 @@ PrefabInstance:
     - target: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: _zoomLevel
-      value: 18
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318215, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
@@ -1297,12 +1309,12 @@ PrefabInstance:
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.105
+      value: 0.10604498
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.0525
+      value: 0.05302249
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}

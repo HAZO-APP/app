@@ -91,7 +91,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2386537163618883609}
-  - component: {fileID: 4549460922438741335}
   - component: {fileID: 5068898240631895532}
   m_Layer: 0
   m_Name: MapPin
@@ -116,22 +115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &4549460922438741335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574246405696385944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba327c774657dc489b9f826d1265747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
-  sprites: []
-  Map: {fileID: 0}
-  id: 
 --- !u!114 &5068898240631895532
 MonoBehaviour:
   m_ObjectHideFlags: 0

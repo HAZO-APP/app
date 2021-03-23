@@ -19,7 +19,7 @@ public class MapPinData : MonoBehaviour
             throw new System.ArgumentException("Invalid argument value");
         }*/
 
-        symbol.GetComponent<SpriteRenderer>().sprite = sprites[index];
+        //symbol.GetComponent<SpriteRenderer>().sprite = sprites[index];
     }
 
     public void Update()
