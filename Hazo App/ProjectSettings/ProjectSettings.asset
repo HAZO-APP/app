@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -257,13 +257,13 @@ PlayerSettings:
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   androidUseLowAccuracyLocation: 0
   androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
-    banner: {fileID: 2800000, guid: 39dec57feb92944259f63e346d9b3b4f, type: 3}
+    banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   AndroidMinifyWithR8: 0
   AndroidMinifyRelease: 0
@@ -274,7 +274,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 39dec57feb92944259f63e346d9b3b4f, type: 3}
+      m_Icon: {fileID: 2800000, guid: 518a65a529b7f824d843295b66b41afd, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -853,6 +853,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
+      EnterpriseAuthentication: False
       OfflineMapsManagement: False
       HumanInterfaceDevice: False
       Location: True
@@ -865,7 +866,6 @@ PlayerSettings:
       InternetClientServer: True
       VideosLibrary: False
       Objects3D: False
-      InternetClient: True
       RemoteSystem: False
       BlockedChatMessages: False
       PhoneCall: False
@@ -888,9 +888,9 @@ PlayerSettings:
       RecordedCallsFolder: False
       Contacts: False
       Proximity: False
+      InternetClient: True
       CodeGeneration: False
       BackgroundMediaPlayback: False
-      EnterpriseAuthentication: False
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: False
