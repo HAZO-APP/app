@@ -42,6 +42,7 @@ public class popupwindoow : MonoBehaviour
 
     public void close()
     {
-        SceneManager.LoadScene(1);
+        MetalList.SetActive(false);
+
     }
 }
