@@ -11,6 +11,7 @@ public class PageManager : MonoBehaviour
     public GameObject header;
 
     public MapPage mapPage;
+    public ARPage arPage;
     public bool subPageActive = false;
     public bool buttonPressed = false;
     // Start is called before the first frame update
@@ -36,6 +37,10 @@ public class PageManager : MonoBehaviour
         headerBox.GetComponent<RectTransform>().localScale = new Vector3(screenSize.x, 40f / 517.5f * screenSize.y, 1);
 
         header.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1 * 40f / 517.5f * screenSize.y / 2, 0);
+
+        arPage.pageManager = this;
+        arPage.setPage(screenSize);
+        
         mapPage.pageManager = this;
         mapPage.setPage(screenSize);
     }

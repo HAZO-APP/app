@@ -112,6 +112,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4529306886525188773, guid: 1c7ca1019c291e1448c752e640d55ead,
+        type: 3}
+      propertyPath: elements.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529306886525188773, guid: 1c7ca1019c291e1448c752e640d55ead,
+        type: 3}
+      propertyPath: elements.Array.data[0]
+      value: 
+      objectReference: {fileID: 3893328647928786278}
+    - target: {fileID: 4529306886525188773, guid: 1c7ca1019c291e1448c752e640d55ead,
+        type: 3}
+      propertyPath: elements.Array.data[1]
+      value: 
+      objectReference: {fileID: 215256972812120343}
+    - target: {fileID: 4529306886525188773, guid: 1c7ca1019c291e1448c752e640d55ead,
+        type: 3}
+      propertyPath: elements.Array.data[2]
+      value: 
+      objectReference: {fileID: 9081901402288539171}
     - target: {fileID: 5261190685526452844, guid: 1c7ca1019c291e1448c752e640d55ead,
         type: 3}
       propertyPath: m_Name
@@ -120,7 +140,25 @@ PrefabInstance:
     - target: {fileID: 6444851227069262263, guid: 1c7ca1019c291e1448c752e640d55ead,
         type: 3}
       propertyPath: m_Name
-      value: mapMenu (1)
+      value: selectPin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c7ca1019c291e1448c752e640d55ead, type: 3}
+--- !u!1 &3893328647928786278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 686058786750212434, guid: 1c7ca1019c291e1448c752e640d55ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 4576430263628563508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &215256972812120343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4430979085208515875, guid: 1c7ca1019c291e1448c752e640d55ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 4576430263628563508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9081901402288539171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4723108495038759447, guid: 1c7ca1019c291e1448c752e640d55ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 4576430263628563508}
+  m_PrefabAsset: {fileID: 0}
