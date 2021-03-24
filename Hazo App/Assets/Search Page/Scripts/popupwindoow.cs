@@ -42,6 +42,6 @@ public class popupwindoow : MonoBehaviour
 
     public void close()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
 }
