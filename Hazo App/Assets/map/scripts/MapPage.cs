@@ -65,7 +65,7 @@ public class MapPage : MonoBehaviour
 
         public static AnimationCurve miniAnimationCurve, FullScreenAnimationCurve;
 
-        public Pin(string rawPin, GameObject prefab, Transform parent, Sprite icon)
+        public Pin(string rawPin, GameObject prefab, Transform parent, Sprite[] icons)
         {
             if(rawPin.Length == 0 || rawPin == null)
             {
@@ -92,7 +92,7 @@ public class MapPage : MonoBehaviour
             gameObject.GetComponent<MapPin>().Altitude = 1;
             gameObject.GetComponent<MapPin>().Location = coord;
 
-            gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
+            gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icons[this.type];
         }
 
         public Pin(Transform parent, GameObject prefab, Sprite icon, int id, LatLon coord, int type, int[] vote, int visitors)
@@ -204,7 +204,7 @@ public class MapPage : MonoBehaviour
                         {
                             if(tmp[i1].Length != 0)
                             {
-                                pins.Add(new Pin(Regex.Replace(tmp[i1], "\n", ""), pinPrefab, map.transform, icons[1]));
+                                pins.Add(new Pin(Regex.Replace(tmp[i1], "\n", ""), pinPrefab, map.transform, icons));
                             }
 
                         }
