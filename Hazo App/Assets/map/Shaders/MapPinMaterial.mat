@@ -87,7 +87,7 @@ Material:
     m_Colors:
     - Color_3C2BDE7E: {r: 0.2196078, g: 0.6039216, b: 0.6039216, a: 0}
     - Color_667BE74: {r: 0.8588235, g: 0.9764706, b: 0.6156863, a: 1}
-    - Color_C12CF8FB: {r: 1, g: 1, b: 1, a: 0}
+    - Color_C12CF8FB: {r: 1, g: 1, b: 1, a: 1}
     - Color_DE578C75: {r: 0.2196078, g: 0.6039216, b: 0.6039216, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

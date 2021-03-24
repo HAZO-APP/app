@@ -179,7 +179,7 @@ public class MapPage : MonoBehaviour
         map.transform.GetComponent<RectTransform>().anchoredPosition = pos;
     }
 
-    IEnumerator GetRequest(float radius, Action<UnityWebRequest> callback)
+    IEnumerator getPins(float radius, Action<UnityWebRequest> callback)
     {
         LatLon coord = map.GetComponent<MapRenderer>().Center;
         using (UnityWebRequest request = UnityWebRequest.Get($"http://3.97.134.252//index.php?lat={coord.LatitudeInDegrees}&lon={coord.LongitudeInDegrees}&rad={radius}"))
@@ -189,9 +189,9 @@ public class MapPage : MonoBehaviour
             callback(request);
         }
     }
-    public void GetPosts(float radius)
+    public void getPinsResult(float radius)
     {
-        StartCoroutine(GetRequest(radius, (UnityWebRequest req) =>
+        StartCoroutine(getPins(radius, (UnityWebRequest req) =>
                 {
                     if (req.isNetworkError || req.isHttpError)
                     {
@@ -225,7 +225,7 @@ public class MapPage : MonoBehaviour
             radius /= 2;
 
 
-            GetPosts(radius);
+            getPinsResult(radius);
             locationsUpdated = true;
         }
         Vector4 mapBorder = Vector4.zero;
@@ -333,6 +333,7 @@ public class MapPage : MonoBehaviour
             page.active = false;
 
             this.GetComponentInChildren<MapPin>().ScaleCurve = Pin.miniAnimationCurve;
+            clearTmpPin();
         }
         else
         {
@@ -358,6 +359,7 @@ public class MapPage : MonoBehaviour
                 tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1);
                 mapMenu[0].GetComponent<MapMenu>().active = true;
                 map.GetComponent<MapRenderer>().Center = coord.LatLon;
+                Handheld.Vibrate();
             }
         }
         catch (Exception e)
@@ -410,14 +412,15 @@ public class MapPage : MonoBehaviour
     {
 
     }
-    /*void removePin(string id)
-    {
-        pins.RemoveAt(pins.FindIndex(x => x.GetComponent<MapPin>().id == id));
-    }*/
 
-    void removePin(int index)
+    public void clearTmpPin()
     {
-        pins.RemoveAt(index);
+        if(tmpPin != null)
+        {
+            Destroy(tmpPin.gameObject);
+            tmpPin = null;
+            mapMenu[0].GetComponent<MapMenu>().active = false;
+        }
     }
 
     void OnDrawGizmos()

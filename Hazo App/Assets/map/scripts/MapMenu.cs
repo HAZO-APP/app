@@ -38,8 +38,8 @@ public class MapMenu : MonoBehaviour
             switch(elements[i1].tag)
             {
                 case "button":
-                    scale.x = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y / 2;
-                    scale.y = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y / 2;
+                    scale.x = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y * 0.8f / 25;
+                    scale.y = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y * 0.8f / 25;
                     break;
                 case "dropDown":
                     
