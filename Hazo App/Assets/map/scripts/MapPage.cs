@@ -2,7 +2,7 @@
 using Microsoft.Maps.Unity;
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine.Networking;
@@ -30,6 +30,7 @@ public class MapPage : MonoBehaviour
     public GameObject pinPrefab;
     public PageManager pageManager;
     public Page page;
+    public GameObject[] mapMenu = new GameObject[2];
 
     private MapRenderer render;
     private Material m;
@@ -44,17 +45,23 @@ public class MapPage : MonoBehaviour
     private const int pinLayer = 2;
 
     public Sprite[] icons = new Sprite[5];
-    public bool locationsUpdated = false;
+
+    private bool locationsUpdated = false;
+
+    public bool subPageStateChange = false;
+
+    private Pin tmpPin;
+
     private class Pin
     {
         public GameObject gameObject;
 
-        int id;
-        LatLon coord;
+        public int id;
+        public LatLon coord;
         // {down vote, up vote}
-        int[] vote = new int[2];
-        int type = 0;
-        int visitors;
+        public int[] vote = new int[2];
+        public int type = 0;
+        public int visitors;
 
         public static AnimationCurve miniAnimationCurve, FullScreenAnimationCurve;
 
@@ -87,6 +94,29 @@ public class MapPage : MonoBehaviour
 
             gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
         }
+
+        public Pin(Transform parent, GameObject prefab, Sprite icon, int id, LatLon coord, int type, int[] vote, int visitors)
+        {
+            this.id = id;
+
+            this.coord = coord;
+            this.type = type;
+
+            this.vote = vote;
+            this.visitors = visitors;
+            
+            gameObject = Instantiate(prefab, parent);
+            gameObject.GetComponent<MapPin>().ScaleCurve = Pin.miniAnimationCurve;
+            gameObject.GetComponent<MapPin>().Altitude = 1;
+            gameObject.GetComponent<MapPin>().Location = coord;
+
+            gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
+        }
+        public void setPinIcon(Sprite icon, int type)
+        {
+            gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
+            this.type = type;
+        }
         public string toString()
         {
             return $"id:{id}\tcoord:{coord}\tvoteUp:{vote[0]}\tvoteDown:{vote[1]}\tvisitors:{visitors}";
@@ -95,6 +125,7 @@ public class MapPage : MonoBehaviour
 
     public void setPage(Vector2 screenSize)
     {
+        Vector3 pos;
         render = map.GetComponent<MapRenderer>();
 
         m = render.TerrainMaterial;
@@ -121,13 +152,18 @@ public class MapPage : MonoBehaviour
         frame0 = new Keyframe(0, 20f / 475.5f * screenSize.y / Mathf.Max(screenSize.x, screenSize.y) * 20 * 40);
         frame2 = new Keyframe(20, 20f / 475.5f * screenSize.y / Mathf.Max(screenSize.x, screenSize.y) * 20 * 0.5f);
 
+        for(int i1 = 0; i1 < mapMenu.Length; i1++)
+        {
+            mapMenu[i1].GetComponent<MapMenu>().setUpPage(screenSize);
+            pos = mapMenu[i1].GetComponent<RectTransform>().anchoredPosition;
+
+
+            //mapMenu[i1].GetComponent<RectTransform>().anchoredPosition = pos;
+        }
+
         Pin.FullScreenAnimationCurve = new AnimationCurve(frame0, frame2);
 
-        
-        pins.Add(new Pin($"id:-1,lat:{center.LatitudeInDegrees},lon:{center.LongitudeInDegrees},type:{0},upVote:{-1},downVote:{-1},visitors:{-1}", pinPrefab, map.transform, icons[0]));
-
-        //Debug.Log(pins[pins.Count - 1].toString());
-
+        pins.Add(new Pin(map.transform, pinPrefab, icons[0], -1, center, 0, null, 1));
     }
 
     private void setMapSize(float screenSize)
@@ -143,8 +179,9 @@ public class MapPage : MonoBehaviour
         map.transform.GetComponent<RectTransform>().anchoredPosition = pos;
     }
 
-    IEnumerator GetRequest(LatLon coord, float radius, Action<UnityWebRequest> callback)
+    IEnumerator GetRequest(float radius, Action<UnityWebRequest> callback)
     {
+        LatLon coord = map.GetComponent<MapRenderer>().Center;
         using (UnityWebRequest request = UnityWebRequest.Get($"http://3.97.134.252//index.php?lat={coord.LatitudeInDegrees}&lon={coord.LongitudeInDegrees}&rad={radius}"))
         {
             // Send the request and wait for a response
@@ -152,9 +189,9 @@ public class MapPage : MonoBehaviour
             callback(request);
         }
     }
-    public void GetPosts(LatLon coord, float radius)
+    public void GetPosts(float radius)
     {
-        StartCoroutine(GetRequest(coord, radius, (UnityWebRequest req) =>
+        StartCoroutine(GetRequest(radius, (UnityWebRequest req) =>
                 {
                     if (req.isNetworkError || req.isHttpError)
                     {
@@ -167,10 +204,7 @@ public class MapPage : MonoBehaviour
                         {
                             if(tmp[i1].Length != 0)
                             {
-                                
                                 pins.Add(new Pin(Regex.Replace(tmp[i1], "\n", ""), pinPrefab, map.transform, icons[1]));
-                                map.GetComponent<MapPinLayer>().MapPins.Add(pins[pins.Count - 1].gameObject.GetComponent<MapPin>());
-                                Debug.Log(pins[pins.Count - 1].toString()); ;
                             }
 
                         }
@@ -191,7 +225,7 @@ public class MapPage : MonoBehaviour
             radius /= 2;
 
 
-            GetPosts(center, radius);
+            GetPosts(radius);
             locationsUpdated = true;
         }
         Vector4 mapBorder = Vector4.zero;
@@ -263,9 +297,26 @@ public class MapPage : MonoBehaviour
                 page.active = false;
             }
         }
-
-        subPage.SetActive(fullScreenMode);
         //updatePins();
+
+        if(tmpPin != null && mapMenu[0].GetComponent<MapMenu>().active)
+        {
+            switch(mapMenu[0].GetComponent<MapMenu>().elements[1].GetComponent<Dropdown>().value)
+            {
+                case 0:
+                    tmpPin.setPinIcon(icons[1], 1);
+                    break;
+                case 1:
+                    tmpPin.setPinIcon(icons[2], 2);
+                    break;
+            }
+        }
+
+        if(subPageStateChange)
+        {
+            toggleSubPage();
+            subPageStateChange = false;
+        }
     }
 
     public void toggleSubPage()
@@ -292,13 +343,73 @@ public class MapPage : MonoBehaviour
             this.GetComponentInChildren<MapPin>().ScaleCurve = Pin.FullScreenAnimationCurve;
         }
 
-        subPage.SetActive(!subPage.activeSelf);
         fullScreenMode = !fullScreenMode;
+        subPage.SetActive(!subPage.activeSelf);
         pageManager.subPageActive = !pageManager.subPageActive;
 
     }
 
+    public void addPin(LatLonAlt coord)
+    {
+        try
+        {
+            if (tmpPin == null)
+            {
+                tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1);
+                mapMenu[0].GetComponent<MapMenu>().active = true;
+                map.GetComponent<MapRenderer>().Center = coord.LatLon;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
 
+    private IEnumerator addPin(Action<UnityWebRequest> callback)
+    {
+        Debug.Log("Sending result");
+        using (UnityWebRequest request = UnityWebRequest.Get($"http://3.97.134.252//addLocation.php?lat={tmpPin.coord.LatitudeInDegrees}&lon={tmpPin.coord.LongitudeInDegrees}&type={tmpPin.type}"))
+        {
+            // Send the request and wait for a response
+            yield return request.SendWebRequest();
+            callback(request);
+        }
+    }
+    public void addPin()
+    {
+        StartCoroutine(addPin((UnityWebRequest req) =>
+            {
+                Debug.Log("Got result");
+                if (req.isNetworkError || req.isHttpError)
+                {
+                    Debug.Log($"{req.error}: {req.downloadHandler.text}");
+                }
+                else
+                {
+                    string[] tmp = Regex.Split(req.downloadHandler.text, "<br>");
+                    for (int i1 = 0; i1 < tmp.Length; i1++)
+                    {
+                        if(tmp[i1].Split(':')[0] == "error")
+                        {
+                            Debug.Log(tmp[i1]);
+                        }
+                        else if(tmpPin != null)
+                        {
+                            pins.Add(tmpPin);
+                            tmpPin = null;
+                            mapMenu[0].GetComponent<MapMenu>().active = false;
+                        }
+                    }
+                }
+            }
+            )
+        );
+    }
+    public void selectPin(LatLonAlt pos)
+    {
+
+    }
     /*void removePin(string id)
     {
         pins.RemoveAt(pins.FindIndex(x => x.GetComponent<MapPin>().id == id));
