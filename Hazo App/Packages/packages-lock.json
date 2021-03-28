@@ -8,7 +8,7 @@
       "url": "https://unity.virtualearth.net/npm/registry"
     },
     "com.ptc.vuforia.engine": {
-      "version": "file:C:/Users/hasin/Documents/uni/2ndSemester/GNG 1103/app/com.ptc.vuforia.engine",
+      "version": "file:D:/Documents/com.ptc.vuforia.engine",
       "depth": 0,
       "source": "local",
       "dependencies": {

@@ -347,7 +347,6 @@ public class MapPage : MonoBehaviour
         fullScreenMode = !fullScreenMode;
         subPage.SetActive(!subPage.activeSelf);
         pageManager.subPageActive = !pageManager.subPageActive;
-
     }
 
     public void addPin(LatLonAlt coord)

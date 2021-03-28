@@ -38,9 +38,8 @@ public class PageManager : MonoBehaviour
 
         header.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1 * 40f / 517.5f * screenSize.y / 2, 0);
 
-        arPage.pageManager = this;
-        arPage.setPage(screenSize);
-        
+        //arPage.pageManager = this;
+
         mapPage.pageManager = this;
         mapPage.setPage(screenSize);
     }
@@ -147,6 +146,21 @@ public class PageManager : MonoBehaviour
         {
             pagePosition += direction * jump;
             updatePagesPos(-1 * direction * jump * screenSize.x);
+        }
+    }
+
+    void setPageActive()
+    {
+        int minPage = (int) Mathf.Clamp(Mathf.Floor(pagePosition), 0, pages.Length - 1);
+        int maxPage = (int) Mathf.Clamp(Mathf.Ceil(pagePosition), 0, pages.Length - 1);
+
+        if(minPage == maxPage)
+        {
+            //pages[minPage].getComponent
+        }
+        else
+        {
+
         }
     }
 }
