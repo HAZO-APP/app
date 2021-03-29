@@ -42,12 +42,6 @@ public class popupwindoow : MonoBehaviour
 
     public void close()
     {
-        MetalList.SetActive(false);
-        GlassList.SetActive(false);
-        PlasticList.SetActive(false);
-        PaperList.SetActive(false);
-        AlcoholList.SetActive(false);
-        CartonList.SetActive(false);
-
+        SceneManager.LoadScene(4);
     }
 }
