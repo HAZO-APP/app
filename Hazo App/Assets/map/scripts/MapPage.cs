@@ -92,7 +92,10 @@ public class MapPage : MonoBehaviour
             gameObject.GetComponent<MapPin>().Altitude = 1;
             gameObject.GetComponent<MapPin>().Location = coord;
 
+            gameObject.name = id.ToString();
+
             gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icons[this.type];
+
         }
 
         public Pin(Transform parent, GameObject prefab, Sprite icon, int id, LatLon coord, int type, int[] vote, int visitors)
@@ -109,6 +112,8 @@ public class MapPage : MonoBehaviour
             gameObject.GetComponent<MapPin>().ScaleCurve = Pin.miniAnimationCurve;
             gameObject.GetComponent<MapPin>().Altitude = 1;
             gameObject.GetComponent<MapPin>().Location = coord;
+
+            gameObject.name = id.ToString();
 
             gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
         }
@@ -333,7 +338,7 @@ public class MapPage : MonoBehaviour
             page.active = false;
 
             this.GetComponentInChildren<MapPin>().ScaleCurve = Pin.miniAnimationCurve;
-            clearTmpPin();
+            closeMapMenus();
         }
         else
         {
@@ -372,6 +377,7 @@ public class MapPage : MonoBehaviour
     }
     public void addPin()
     {
+        closeMapMenus();
         StartCoroutine(addPin((UnityWebRequest req) =>
             {
                 Debug.Log("Got result");
@@ -400,18 +406,25 @@ public class MapPage : MonoBehaviour
             )
         );
     }
-    public void selectPin(LatLonAlt pos)
+    public void selectPin(GameObject pin)
     {
+        closeMapMenus();
+
+        Debug.Log(pin.transform.name);
 
     }
-
-    public void clearTmpPin()
+   
+    public void closeMapMenus()
     {
         if(tmpPin != null)
         {
             Destroy(tmpPin.gameObject);
             tmpPin = null;
-            mapMenu[0].GetComponent<MapMenu>().active = false;
+        }
+
+        for(int i1 = 0; i1 < mapMenu.Length; i1++)
+        {
+            mapMenu[i1].GetComponent<MapMenu>().active = false;
         }
     }
 
