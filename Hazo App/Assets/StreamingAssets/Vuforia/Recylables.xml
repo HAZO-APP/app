@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="Notebook" size="4.000000 3.428571" />
+    <ImageTarget name="Mug2" size="4.000000 5.118847" />
+    <ImageTarget name="Mouse2" size="4.000000 1.892729" />
+    <ImageTarget name="Mouse" size="4.000000 8.032468" />
+    <ImageTarget name="Calculator" size="4.000000 8.650964" />
+    <ImageTarget name="Mug" size="4.000000 4.148936" />
+    <ImageTarget name="Tim_Hortons" size="4.000000 6.153291" />
+    <ImageTarget name="Egg_Carton" size="4.000000 7.954344" />
+    <ImageTarget name="Scotties" size="4.000000 1.095517" />
+    <ImageTarget name="Tissue_box" size="4.000000 1.290087" />
     <ImageTarget name="PET01_2" size="4.000000 4.192488" />
     <ImageTarget name="PET01" size="4.000000 3.301533" />
   </Tracking>
