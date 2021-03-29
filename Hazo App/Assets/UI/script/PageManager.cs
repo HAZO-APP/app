@@ -51,7 +51,7 @@ public class PageManager : MonoBehaviour
 
     public float getClosestPage()
     {
-        return Mathf.Clamp(Mathf.Round(pagePosition),0, pages.Length - 1);
+        return Mathf.Clamp(Mathf.Round(pagePosition), 0 , pages.Length - 1);
     }
 
     private void updatePagesPos(float change)
@@ -62,9 +62,12 @@ public class PageManager : MonoBehaviour
         {
             temp = pages[i1].GetComponent<RectTransform>().anchoredPosition;
             temp.x += change;
+            //temp.x = Mathf.Clamp(temp.x + change, Mathf.Max(Mathf.Floor(pagePosition), (float) pageGoal) * screenSize.x, Mathf.Min(Mathf.Ceil(pagePosition), (float) pageGoal) * screenSize.x);
+
             pages[i1].GetComponent<RectTransform>().anchoredPosition = temp;
         }
     }
+
     private void setPagesPos(int frontPageIndex)
     {
         Vector3 temp;
@@ -112,7 +115,7 @@ public class PageManager : MonoBehaviour
         change /= screenSize.x * -1;
 
 
-        if (Mathf.Abs(change.x) >= 0.1 && 0 <= pageGoal + change.x && pageGoal + change.x <= pages.Length - 1)
+        if (Mathf.Abs(change.x) >= 0.3 && 0 <= pageGoal + change.x && pageGoal + change.x <= pages.Length - 1)
         {
             updatePagesPos((pagePosition - (pageGoal + change.x)) * screenSize.x);
 
@@ -124,7 +127,6 @@ public class PageManager : MonoBehaviour
         float direction = 0f;
         float jump = 3f * Time.deltaTime;
         float tempGoal = (float)pageGoal;
-        Vector3 pos;
 
         //right of goal
         if (pagePosition > tempGoal + 0.05)

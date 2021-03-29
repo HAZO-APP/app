@@ -298,7 +298,7 @@ public class MapPage : MonoBehaviour
             }
         }
         //updatePins();
-
+        
         if(tmpPin != null && mapMenu[0].GetComponent<MapMenu>().active)
         {
             switch(mapMenu[0].GetComponent<MapMenu>().elements[1].GetComponent<Dropdown>().value)
@@ -351,19 +351,12 @@ public class MapPage : MonoBehaviour
 
     public void addPin(LatLonAlt coord)
     {
-        try
+        if (tmpPin == null)
         {
-            if (tmpPin == null)
-            {
-                tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1);
-                mapMenu[0].GetComponent<MapMenu>().active = true;
-                map.GetComponent<MapRenderer>().Center = coord.LatLon;
-                Handheld.Vibrate();
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
+            tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1);
+            mapMenu[0].GetComponent<MapMenu>().active = true;
+            map.GetComponent<MapRenderer>().Center = coord.LatLon;
+            Handheld.Vibrate();
         }
     }
 

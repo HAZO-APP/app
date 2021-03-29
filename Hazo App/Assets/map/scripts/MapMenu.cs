@@ -28,9 +28,12 @@ public class MapMenu : MonoBehaviour
 
         backdrop.transform.GetComponent<RectTransform>().sizeDelta = size;
 
+        backdrop.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(screenSize.x, 0, 0);
+
         //buttons
         for (int i1 = 0; i1 < elements.Length; i1++)
         {
+
             pos = elements[i1].GetComponent<RectTransform>().anchoredPosition;
             size = elements[i1].GetComponent<RectTransform>().sizeDelta;
             scale = elements[i1].GetComponent<RectTransform>().localScale;
@@ -77,12 +80,20 @@ public class MapMenu : MonoBehaviour
     public void Update()
     {
         Vector3 pos = this.GetComponent<RectTransform>().anchoredPosition;
+        if(active)
+        {
+            pos.z = -3;
+        }
+        else
+        {
+            pos.z = -2;
+        }
 
-        if(active && state > 0.0001)
+        if(active && state > 0.01)
         {
             state -= Time.deltaTime;
         }
-        else if(state < 1 - 0.0001)
+        else if(!active && state < 1 - 0.01)
         {
             state += Time.deltaTime;
         }

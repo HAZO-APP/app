@@ -6,6 +6,7 @@ TagManager:
   tags:
   - button
   - dropDown
+  - infoTag
   layers:
   - Default
   - TransparentFX
