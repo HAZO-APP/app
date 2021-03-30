@@ -1,21 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
+using UnityEngine.UI;
 
-public class ARPage : Page
+public class ARPage : MonoBehaviour
 {
-    public GameObject ARCamera;
+    public TrackableBehaviour [] trackers;
+    public string[] Outputs;
+    public Text output;
     public PageManager pageManager;
 
-    public void enable()
+
+
+    public void Start()
     {
-        ARCamera.transform.gameObject.SetActive(true);
-        this.transform.gameObject.SetActive(true);
     }
 
-    public void disable()
+    public void setPage(Vector2 screenSize)
     {
-        ARCamera.transform.gameObject.SetActive(false);
-        this.transform.gameObject.SetActive(false);
+    }
+
+    public void Update()
+    {
+        bool check = false;
+        for(int i = 0; i < trackers.Length; i++)
+        {
+            if(trackers[i].CurrentStatus == TrackableBehaviour.Status.DETECTED || trackers[i].CurrentStatus == TrackableBehaviour.Status.TRACKED || trackers[i].CurrentStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+            {
+                check = true;
+                output.text = Outputs[i];
+                break;
+            }
+        }
+
+        if(check == false)
+        {
+            output.text = "";
+        }
     }
 }
