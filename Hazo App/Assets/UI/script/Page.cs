@@ -5,6 +5,8 @@ using UnityEngine;
 public class Page : MonoBehaviour
 {
     public bool active = false;
+    public GameObject subPage;
+    public PageManager pageManager;
 
     public void enable()
     {
@@ -18,7 +20,7 @@ public class Page : MonoBehaviour
 
     public void toggle()
     {
-        if(this.transform.gameObject.active)
+        if (this.transform.gameObject.activeSelf)
         {
             disable();
         }
@@ -26,5 +28,14 @@ public class Page : MonoBehaviour
         {
             enable();
         }
+    }
+
+    public void toggleSubPage()
+    {
+        subPage.SetActive(!subPage.activeSelf);
+
+        pageManager.subPageActive = !pageManager.subPageActive;
+
+        pageManager.toggleMenu();
     }
 }

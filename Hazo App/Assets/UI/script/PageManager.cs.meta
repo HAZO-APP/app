@@ -3,7 +3,12 @@ guid: c621813e407020f44b057b60ac9de975
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - header: {instanceID: 0}
+  - mapPage: {instanceID: 0}
+  - arPage: {instanceID: 0}
+  - searchPage: {instanceID: 0}
+  - menu: {fileID: 372055331258192815, guid: 51aa65290afb4dd478f5a75e7ff322b8, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
