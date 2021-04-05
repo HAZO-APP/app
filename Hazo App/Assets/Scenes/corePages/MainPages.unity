@@ -617,7 +617,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 1192016155}
+=======
+  - {fileID: 1267499768}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -756,7 +760,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!21 &1192016155
+=======
+--- !u!21 &1267499768
+>>>>>>> Stashed changes
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -765,7 +773,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'IMG_20210329_110043331_2Material
 
+<<<<<<< Updated upstream
     32646'
+=======
+    17210'
+>>>>>>> Stashed changes
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -1057,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.09506822, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2387,12 +2399,20 @@ PrefabInstance:
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Size.y
+<<<<<<< Updated upstream
       value: 0.10502857
+=======
+      value: 0.10504753
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: m_Center.y
+<<<<<<< Updated upstream
       value: 0.052514285
+=======
+      value: 0.052523766
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6940412907366318220, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
@@ -2607,7 +2627,7 @@ PrefabInstance:
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: _onDoubleTap.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
@@ -2652,7 +2672,7 @@ PrefabInstance:
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: _onDoubleTap.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
@@ -2672,7 +2692,7 @@ PrefabInstance:
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}
       propertyPath: _onDoubleTap.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: selectPin
+      value: deSelectPin
       objectReference: {fileID: 0}
     - target: {fileID: 7374086432562699988, guid: e934bfb1a36259b43b4a8fbc8f4da6bc,
         type: 3}

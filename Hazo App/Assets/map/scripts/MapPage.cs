@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text.RegularExpressions;
+using UnityEngine.Events;
 /*
 [CustomEditor(typeof(MapPage))]
 public class MapPageEditor : Editor
@@ -37,7 +38,6 @@ public class MapPage : MonoBehaviour
 
     public bool fullScreenMode = false;
 
-
     private DateTime start;
     private TimeSpan minTapTime = TimeSpan.FromMilliseconds(100);
 
@@ -55,6 +55,7 @@ public class MapPage : MonoBehaviour
     private class Pin
     {
         public GameObject gameObject;
+        public GameObject button;
 
         public int id;
         public LatLon coord;
@@ -65,7 +66,7 @@ public class MapPage : MonoBehaviour
 
         public static AnimationCurve miniAnimationCurve, FullScreenAnimationCurve;
 
-        public Pin(string rawPin, GameObject prefab, Transform parent, Sprite[] icons)
+        public Pin(string rawPin, GameObject prefab, Transform parent, Sprite[] icons, Transform fullScreenPage)
         {
             if(rawPin.Length == 0 || rawPin == null)
             {
@@ -96,9 +97,17 @@ public class MapPage : MonoBehaviour
 
             gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icons[this.type];
 
+            button = gameObject.transform.GetChild(2).gameObject;
+
+            //button.GetComponent<Button>().onClick.AddListener(unityAction);
+            button.transform.SetParent(fullScreenPage);
+            Vector3 posTemp = button.transform.position;
+            posTemp.z -= 5;
+            button.transform.position = posTemp;
+            button.transform.name = this.id.ToString();
         }
 
-        public Pin(Transform parent, GameObject prefab, Sprite icon, int id, LatLon coord, int type, int[] vote, int visitors)
+        public Pin(Transform parent, GameObject prefab, Sprite icon, int id, LatLon coord, int type, int[] vote, int visitors, Transform fullScreenPage)
         {
             this.id = id;
 
@@ -116,6 +125,37 @@ public class MapPage : MonoBehaviour
             gameObject.name = id.ToString();
 
             gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
+
+            button = gameObject.transform.GetChild(2).gameObject;
+
+            //button.GetComponent<Button>().onClick.AddListener(unityAction);
+            button.transform.SetParent(fullScreenPage);
+            Vector3 posTemp = button.transform.position;
+            posTemp.z -= 5;
+            button.transform.position = posTemp;
+            button.transform.name = this.id.ToString();
+        }
+
+        public void Update(Vector3 mapScale)
+        {
+            if(gameObject.activeSelf)
+            {
+                Vector3 pos = gameObject.GetComponent<RectTransform>().position;
+                Vector3 scalePin = gameObject.GetComponent<RectTransform>().localScale;
+
+                Vector3 scale = new Vector3();
+                scale.x = scalePin.x * mapScale.x;
+                scale.y = scalePin.z * mapScale.z;
+                scale.z = 1;
+
+                button.GetComponent<RectTransform>().position = pos;
+                button.GetComponent<RectTransform>().localScale = scale;
+            }
+
+            if(gameObject.activeSelf != button.activeSelf)
+            {
+                button.SetActive(gameObject.activeSelf);
+            }
         }
         public void setPinIcon(Sprite icon, int type)
         {
@@ -127,7 +167,7 @@ public class MapPage : MonoBehaviour
             return $"id:{id}\tcoord:{coord}\tvoteUp:{vote[0]}\tvoteDown:{vote[1]}\tvisitors:{visitors}";
         }
     }
-
+    
     public void setPage(Vector2 screenSize)
     {
         Vector3 pos;
@@ -168,7 +208,9 @@ public class MapPage : MonoBehaviour
 
         Pin.FullScreenAnimationCurve = new AnimationCurve(frame0, frame2);
 
-        pins.Add(new Pin(map.transform, pinPrefab, icons[0], -1, center, 0, null, 1));
+        Pin newPin = new Pin(map.transform, pinPrefab, icons[0], -1, center, 0, null, 1, this.transform.GetChild(1));
+        newPin.button.GetComponent<Button>().onClick.AddListener(() =>selectPin(newPin.gameObject));
+        pins.Add(newPin);
     }
 
     private void setMapSize(float screenSize)
@@ -209,7 +251,11 @@ public class MapPage : MonoBehaviour
                         {
                             if(tmp[i1].Length != 0)
                             {
-                                pins.Add(new Pin(Regex.Replace(tmp[i1], "\n", ""), pinPrefab, map.transform, icons));
+                                Pin newPin = new Pin(Regex.Replace(tmp[i1], "\n", ""), pinPrefab, map.transform, icons, this.transform.GetChild(1));
+
+                                newPin.button.GetComponent<Button>().onClick.AddListener(() => selectPin(newPin.gameObject));
+
+                                pins.Add(newPin);
                             }
 
                         }
@@ -219,7 +265,7 @@ public class MapPage : MonoBehaviour
             )
         );
     }
-    void Update()
+    public void Update()
     {
         if(map.GetComponent<MapRenderer>().IsLoaded && !locationsUpdated)
         {
@@ -275,6 +321,7 @@ public class MapPage : MonoBehaviour
             {
                 start = DateTime.UtcNow;
             }
+
             if (mapBorder.x <= pos1.x && pos1.x <= mapBorder.w)
             {
                 if (mapBorder.y <= pos1.y && pos1.y <= mapBorder.z)
@@ -302,7 +349,11 @@ public class MapPage : MonoBehaviour
                 page.active = false;
             }
         }
-        //updatePins();
+
+        for(int i1 = 0; i1 < pins.Count; i1++)
+        {
+            pins[i1].Update(map.GetComponent<RectTransform>().localScale);
+        }
         
         if(tmpPin != null && mapMenu[0].GetComponent<MapMenu>().active)
         {
@@ -328,6 +379,9 @@ public class MapPage : MonoBehaviour
     {
         float scaleFactor;
         Vector2 screenSize = pageManager.getScreenSize();
+        
+        closeMapMenus();
+        
         if (subPage.activeSelf)
         {
             scaleFactor = Mathf.Min(screenSize.x , screenSize.y) * 0.7f;
@@ -338,7 +392,6 @@ public class MapPage : MonoBehaviour
             page.active = false;
 
             this.GetComponentInChildren<MapPin>().ScaleCurve = Pin.miniAnimationCurve;
-            closeMapMenus();
         }
         else
         {
@@ -358,7 +411,7 @@ public class MapPage : MonoBehaviour
     {
         if (tmpPin == null)
         {
-            tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1);
+            tmpPin = new Pin(map.transform, pinPrefab, icons[1], -1, coord.LatLon, 0, null, 1, this.transform.GetChild(1));
             mapMenu[0].GetComponent<MapMenu>().active = true;
             map.GetComponent<MapRenderer>().Center = coord.LatLon;
             Handheld.Vibrate();
@@ -406,16 +459,32 @@ public class MapPage : MonoBehaviour
             )
         );
     }
-    public void selectPin(GameObject pin)
+    public void selectPin(GameObject pinGameObject)
     {
-        closeMapMenus();
+        int pinId = int.Parse(pinGameObject.transform.name);
+        if (pinId != -1)
+        {
+            Pin pin = pins.Find(p => p.id == pinId);
+            if(pin != null)
+            {
+                closeMapMenus();
+                mapMenu[1].GetComponent<MapMenu>().active = true;
 
-        Debug.Log(pin.transform.name);
+                mapMenu[1].transform.GetChild(1).GetComponentInChildren<Text>().text = pin.visitors.ToString();
+                mapMenu[1].transform.GetChild(2).GetComponentInChildren<Text>().text = pin.vote[0].ToString();
+                mapMenu[1].transform.GetChild(3).GetComponentInChildren<Text>().text = pin.vote[1].ToString();
+
+            }
+        }
 
     }
-   
+    public void deSelectPin()
+    {
+        mapMenu[1].GetComponent<MapMenu>().active = false;
+    }
     public void closeMapMenus()
     {
+        Vector3 pos;
         if(tmpPin != null)
         {
             Destroy(tmpPin.gameObject);
@@ -425,6 +494,10 @@ public class MapPage : MonoBehaviour
         for(int i1 = 0; i1 < mapMenu.Length; i1++)
         {
             mapMenu[i1].GetComponent<MapMenu>().active = false;
+            pos = mapMenu[i1].GetComponent<RectTransform>().anchoredPosition;
+            pos.x = 0;
+            pos.y = 0;
+            mapMenu[i1].GetComponent<RectTransform>().anchoredPosition = pos;
         }
     }
 

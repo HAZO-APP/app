@@ -45,7 +45,8 @@ public class MapMenu : MonoBehaviour
                     scale.y = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y * 0.8f / 25;
                     break;
                 case "dropDown":
-                    
+                case "infoTag":
+
                     size.x = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y / 2 * 4.5f;
                     size.y = backdrop.transform.GetComponent<RectTransform>().sizeDelta.y * 0.75f;
                     break;
