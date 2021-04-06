@@ -12,6 +12,10 @@ public class PageManager : MonoBehaviour
 
     public MapPage mapPage;
     public ARPage arPage;
+    public SearchPage searchPage;
+
+    public GameObject menu;
+
     public bool subPageActive = false;
     public bool buttonPressed = false;
     // Start is called before the first frame update
@@ -42,6 +46,8 @@ public class PageManager : MonoBehaviour
 
         mapPage.pageManager = this;
         mapPage.setPage(screenSize);
+
+        searchPage.setPage(screenSize);
     }
 
     public Vector2 getScreenSize()
@@ -149,6 +155,11 @@ public class PageManager : MonoBehaviour
             pagePosition += direction * jump;
             updatePagesPos(-1 * direction * jump * screenSize.x);
         }
+    }
+
+    public void toggleMenu()
+    {
+        menu.SetActive(!menu.activeSelf);
     }
 
     void setPageActive()
