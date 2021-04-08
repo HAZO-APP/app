@@ -244,7 +244,7 @@ public class SearchPage : Page
 
         subPage.transform.GetChild(0).GetComponent<RectTransform>().localPosition = screenSize / 2;
 
-        scale = Vector2.one * (screenSize.x * 0.5f) / 160f; ;
+        scale = Vector2.one * (screenSize.x * 0.5f) / 160f;
         subPage.transform.GetChild(0).GetComponent<RectTransform>().localScale = scale;
 
         subPage.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2 (screenSize.x * 0.5f, screenSize.y * 0.65f);

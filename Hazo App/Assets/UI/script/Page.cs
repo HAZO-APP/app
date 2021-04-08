@@ -8,6 +8,7 @@ public class Page : MonoBehaviour
     public GameObject subPage;
     public PageManager pageManager;
 
+    public COLOUR colour;
     public void enable()
     {
         transform.gameObject.SetActive(true);

@@ -58,7 +58,7 @@ public class loadingScreenHandler : MonoBehaviour
             
             if (setUpComplete)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
             }
             
         }
